@@ -205,5 +205,10 @@ export function useRouter() {
 }
 
 export function normalizePathname(pathname) {
-  return pathname === "/" ? "/index" : pathname;
+  if (pathname === "/") {
+    return "/index";
+  } else if (pathname.startsWith("/?")) {
+    return pathname.replace(/\//, "/index");
+  }
+  return pathname;
 }
